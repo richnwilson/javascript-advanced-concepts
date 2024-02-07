@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* This is the old way to work with modules */
+        var global='I am global do not change';
+    </script>
+    <script>
+        /* This is the old way to work modules */
+        const localScopeFnc = ((global)=> {
+            global= 'I am changing in local scople only';
+            console.log('My local global scope:', global)
+        })(global)
+        console.log('My global scope:', global)
+        
+        const myFunctions = (() => {
+            const joinWords = (a,b)  => {
+                return `${a} ${b}`
+            }
+            return {
+                joinWords
+            }
+        })()
+    </script>
+    <script>
+        /* This is the old way to work with modules */
+        console.log(myFunctions.joinWords("Join","me"))
+    </script>
+    <script type="module" src="./es6_modules.js"></script>
+    <script type='module'>
+        /* This is the new es6 way to import modules - you can only see this when runs under a live server i.e. 127.0.0.1*/        
+        import {fight} from './es6_modules.js';
+        console.log(fight('ron','hedwig'))
+    </script>
+</head>
+<body>
+    <h1>My title</h1>
+</body>
+</html>
